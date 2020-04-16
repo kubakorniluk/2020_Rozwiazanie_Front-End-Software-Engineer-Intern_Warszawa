@@ -1,14 +1,14 @@
 /* 
-  * App wasn't tested on browsers other then Chrome  
+  * App wasn't tested on browsers other then Chrome.
+  * App does not include a filter function - I ran out of time.
 */
 import React, {useState, useEffect} from 'react';
 import './App.css';
 import Loading from './components/Loading';
 import Pokemons from './components/Pokemons';
 import Header from './components/Header';
-import Footer from './components/Footer'
+import Footer from './components/Footer';
 import Pagination from './components/Pagination';
-import Filter from './components/Filter'
 function App() {
   const [currentPokemons, setCurrentPokemons] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -48,13 +48,10 @@ function App() {
     <>
       <Header />
       <main className="container-fluid p-4">
-        <section className="d-flex flex-row-reverse p-2">
+        <section className="d-flex flex-row-reverse">
           <Pagination count={count} counter={counter} limit={limit} next={goToNext} prev={goToPrev}/>
-          <Filter />
         </section>
-        <div className="row">
-          {(loading) ? <Loading /> : <Pokemons list={currentPokemons}/>}
-        </div>
+        {(loading) ? <Loading /> : <Pokemons list={currentPokemons}/>}
       </main>
       <Footer pagination={<Pagination count={count} counter={counter} limit={limit} next={goToNext} prev={goToPrev}/>}/>
     </>
